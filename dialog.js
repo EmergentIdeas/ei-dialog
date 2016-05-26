@@ -37,9 +37,7 @@ var Dialog = function(options) {
 	this.on = options.on
 	
 	if(!this.on['.btn-cancel']) {
-		var self = this
 		this.on['.btn-cancel'] = function() {
-			self.close()
 		}
 	}
 	this.body = options.body
@@ -75,12 +73,10 @@ Dialog.prototype.open = function() {
 	}
 	
 	setTimeout(function() {
-		var top = ($(window).height() - $('.the-dialog').height()) / 2
-		var left = ($(window).width() - $('.the-dialog').width()) / 2
-		$('.the-dialog').css({
-			top: top + 'px',
-			left: left + 'px'
-		})
+		var head = $('.dialog-frame .head').outerHeight()
+		var foot = $('.dialog-frame .foot').outerHeight()
+		var topAndBottom = head + foot
+		$('.dialog-frame .body').css('max-height', 'calc(90vh - ' + topAndBottom + 'px)')
 		$('.dialog-frame').addClass('open')
 	})
 	return this
