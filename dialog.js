@@ -62,7 +62,7 @@ Dialog.prototype.open = function() {
 	$('body').append(templates['dialogFrame'](this))
 	
 	if(typeof this.body == 'function') {
-		$('.dialog-frame .body').append(this.body())
+		$('.dialog-frame .body').append(this.body($('.dialog-frame .body').get(0)))
 	}
 	else if(typeof this.body == 'string') {
 		$('.dialog-frame .body').append(this.body)
