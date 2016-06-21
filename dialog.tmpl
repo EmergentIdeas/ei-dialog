@@ -62,8 +62,14 @@
 	border-radius: 5px;
 	background-color: white;
 	overflow: hidden;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%) scale(.84);
+	transition: transform 0.262s cubic-bezier(.77,-1.72,.08,1);
 }
+
+.dialog-frame.open .the-dialog {
+	transform: translate(-50%, -50%) scale(1);
+}
+
 
 .dialog-frame .the-dialog .head {
 	border-bottom: solid #aaaaaa 1px;

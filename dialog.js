@@ -6,11 +6,25 @@ tri.parseTemplateScript(templates)
 
 templates = tri.templates
 
-var addTemplatesIfNeeded = function() {
+var addStylesIfNeeded = function() {
 	if($('#dialog-frame-styles').length == 0) {
 		$('head').append('<style type="text/css" id="dialog-frame-styles">' +
 		templates['dialogFrameStyles']() +
 		'</style>')
+	}
+}
+
+var createButtonHandler = function(selector, dialog) {
+	return function() {
+		var result = dialog.on[selector]()
+		if(typeof result == 'boolean') {
+			if(result) {
+				dialog.close()
+			}
+		}
+		else {
+			dialog.close()
+		}
 	}
 }
 
@@ -43,22 +57,8 @@ var Dialog = function(options) {
 	this.body = options.body
 }
 
-var createButtonHandler = function(selector, dialog) {
-	return function() {
-		var result = dialog.on[selector]()
-		if(typeof result == 'boolean') {
-			if(result) {
-				dialog.close()
-			}
-		}
-		else {
-			dialog.close()
-		}
-	}
-}
-
 Dialog.prototype.open = function() {
-	addTemplatesIfNeeded()
+	addStylesIfNeeded()
 	$('body').append(templates['dialogFrame'](this))
 	
 	if(typeof this.body == 'function') {

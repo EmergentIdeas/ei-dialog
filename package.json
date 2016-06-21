@@ -1,11 +1,11 @@
 {
   "name": "ei-dialog",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple dialog",
   "main": "dialog.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-test": "browserify -d test/test1.js > test/test1.debug.js; browserify -d test/test2.js > test/test2.debug.js"
+    "build-test": "browserify -d test/test1.js > test/test1.debug.js; browserify -d test/test2.js > test/test2.debug.js; browserify -d test/big-dialog-test.js > test/big-dialog-test.debug.js"
   },
   "keywords": [
     "dialog"
