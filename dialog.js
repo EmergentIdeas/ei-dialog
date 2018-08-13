@@ -1,4 +1,4 @@
-var $ = require('jquery')
+var $ = typeof jQuery == 'undefined' ? require('jquery') : jQuery
 
 var tri = require('tripartite').createBlank()
 var templates = require('./dialog.tmpl')
