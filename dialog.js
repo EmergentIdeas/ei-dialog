@@ -54,6 +54,10 @@ var Dialog = function(options) {
 		this.on['.btn-cancel'] = function() {
 		}
 	}
+	if(!this.on['.btn-close']) {
+		this.on['.btn-close'] = function() {
+		}
+	}
 	this.body = options.body
 }
 

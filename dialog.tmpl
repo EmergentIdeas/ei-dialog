@@ -3,6 +3,7 @@
 	<div class="mask">&nbsp;</div>
 	<div class="dialog-holder">
 		<div class="the-dialog">
+			<div class="close btn-close">&times;</div>
 			<div class="head">
 				__title__
 			</div>
@@ -70,6 +71,13 @@
 	transform: translate(-50%, -50%) scale(1);
 }
 
+.dialog-frame .the-dialog .close {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	padding: 10px;
+	cursor: pointer;
+}
 
 .dialog-frame .the-dialog .head {
 	border-bottom: solid #aaaaaa 1px;
