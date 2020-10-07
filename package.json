@@ -13,7 +13,7 @@
   "author": "Dan Kolz",
   "license": "ISC",
   "dependencies": {
-    "jquery": "^1.12.0",
+    "jquery": "^3.5.0",
     "tripartite": "^1.0.2"
   },
   "browserify": {
