@@ -62,33 +62,45 @@ var Dialog = function(options) {
 	this.body = options.body
 }
 
+Dialog.prototype.getBodySelector = function() {
+	return '#' + this.id + ' .body'
+}
+
+Dialog.prototype.getFrameSelector = function() {
+	return '#' + this.id 
+}
+
 Dialog.prototype.open = function() {
+	this.id = "dialog" + (new Date().getTime())
 	addStylesIfNeeded()
 	$('body').append(templates['dialogFrame'](this))
 	
+	let bodySelector = this.getBodySelector()
+	let frameSelector = this.getFrameSelector()
+	
 	if(typeof this.body == 'function') {
-		$('.dialog-frame .body').append(this.body($('.dialog-frame .body').get(0)))
+		$(bodySelector).append(this.body($(bodySelector).get(0)))
 	}
 	else if(typeof this.body == 'string') {
-		$('.dialog-frame .body').append(this.body)
+		$(bodySelector).append(this.body)
 	}
 	
 	for(var selector in this.on) {
-		$('.dialog-frame').on('click', selector, createButtonHandler(selector, this))
+		$(frameSelector).on('click', selector, createButtonHandler(selector, this))
 	}
 	
 	setTimeout(function() {
-		var head = $('.dialog-frame .head').outerHeight()
-		var foot = $('.dialog-frame .foot').outerHeight()
+		var head = $(frameSelector + ' .head').outerHeight()
+		var foot = $(frameSelector + ' .foot').outerHeight()
 		var topAndBottom = head + foot
-		$('.dialog-frame .body').css('max-height', 'calc(90vh - ' + topAndBottom + 'px)')
-		$('.dialog-frame').addClass('open')
+		$(bodySelector).css('max-height', 'calc(90vh - ' + topAndBottom + 'px)')
+		$(frameSelector).addClass('open')
 	})
 	return this
 }
 
 Dialog.prototype.close = function() {
-	$('.dialog-frame').remove()
+	$(this.getFrameSelector()).remove()
 	return this
 }
 
