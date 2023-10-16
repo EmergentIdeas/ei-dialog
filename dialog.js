@@ -1,10 +1,5 @@
-// let tri = require('tripartite').createBlank()
-// let templates = require('./dialog.tmpl')
-// tri.parseTemplateScript(templates)
-
-// templates = tri.templates
-
 let dialogStyles = require('./dialog-styles.txt')
+let sequence = 0
 
 
 /**
@@ -34,9 +29,11 @@ let dialogStyles = require('./dialog-styles.txt')
  * @param {string} options.title The title of the dialog
  * @param {string} options.dialogFrameClass An additional string inserted into the class attribute for
  * specific styling of specific types of dialog boxes.
+ * @param {function} options.afterOpen A function which is called after open with the body element and dialog object
+ * as arguments.
  */
 var Dialog = function(options) {
-	this.id = "dialog" + (new Date().getTime())
+	this.id = "dialog" + (new Date().getTime()) + (sequence++)
 	Object.assign(this, options)
 	if(!this.on) {
 		this.on = {}
@@ -83,27 +80,26 @@ Dialog.prototype.addStylesIfNeeded = function() {
 	}
 }
 
-Dialog.prototype.generateFrame = function() {
-	let buttons = ''
-	for(let button of this.buttons) {
-		buttons += `<button class="${button.classes}" type="button">${button.label}</button>`
+Dialog.prototype.renderButton = function(button) {
+	return `<button class="${button.classes}" type="button">${button.label}</button>`
+}
 
-	}
+Dialog.prototype.generateFrame = function() {
+	let buttons = this.buttons.map(this.renderButton).join('')
 	
 	return `
-<div class="dialog-frame ${this.dialogFrameClass}" id="${this.id}" >
-	<div class="mask">&nbsp;</div>
-	<div class="dialog-holder">
-		<div class="the-dialog">
-			<div class="close btn-close">&times;</div>
-			<div class="head">
-				${this.title}
-			</div>
-			<div class="body">
-			</div>
-			<div class="foot">
-				${buttons}
-			</div>
+<div class="dialog-frame ${this.dialogFrameClass || ''}" id="${this.id}" >
+	<div class="mask">
+	</div>
+	<div class="the-dialog">
+		<div class="close btn-close">&times;</div>
+		<div class="head">
+			${this.title}
+		</div>
+		<div class="body">
+		</div>
+		<div class="foot">
+			${buttons}
 		</div>
 	</div>
 </div>
@@ -158,6 +154,10 @@ Dialog.prototype.open = function() {
 
 			bodyElement.style.maxHeight = 'calc(90vh - ' + topAndBottom + 'px)'
 			frameElement.classList.add('open')
+			
+			if(self.afterOpen) {
+				self.afterOpen(bodyElement, self)
+			}
 		})
 	}
 	

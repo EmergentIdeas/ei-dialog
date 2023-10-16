@@ -1,10 +1,10 @@
 {
   "name": "ei-dialog",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A simple dialog",
   "main": "dialog.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run build-test",
     "build-test": "bash build/build-tests.sh"
   },
   "keywords": [
@@ -13,8 +13,6 @@
   "author": "Dan Kolz",
   "license": "ISC",
   "dependencies": {
-    "jquery": "^1.12.0",
-    "tripartite": "^1.1.0"
   },
   "browserify": {
     "transform": [
@@ -22,6 +20,7 @@
     ]
   },
   "devDependencies": {
+    "tripartite": "^1.1.0",
     "browserify": "^17.0.0",
     "stringify": "^5.1.0"
   },

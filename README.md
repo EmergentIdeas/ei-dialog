@@ -65,3 +65,28 @@ The usage example from above.
 
 [Usage Example Source](./test/usage-example.js)
 
+
+## Options 
+
+```js
+/**
+ * @param {string,function} options.body The contents of the body section. This can be a string,
+ * in which case it will just be inserted into the body. It can be a function, in which case
+ * it is expected to return a string (which will be inserted) or a Promise, which should resolve to
+ * a string, which will be inserted. However, this function is passed the body element and dialog
+ * object as arguments, so it can also modify content directory and return an empty string.
+ * @param {object} options.on An object which the key is the selector and the value is a funtion
+ * which is called when the object with that selector is clicked. If the function returns false the
+ * dialog will not be closed. If it returns a Promise, the promise will be resolved and if the resolved
+ * value is false, it will not be closed. Any other return condition will result in the dialog being
+ * closed.
+ * @param {Button[]} options.buttons The buttons that will show up in the footer of the dialog. If buttons are not
+ * specified, "OK" and "Cancel" buttons will be added.
+ * @param {string} options.title The title of the dialog
+ * @param {string} options.dialogFrameClass An additional string inserted into the class attribute for
+ * specific styling of specific types of dialog boxes.
+ * @param {function} options.afterOpen A function which is called after open with the body element and dialog object
+ * as arguments.
+ */
+
+```
