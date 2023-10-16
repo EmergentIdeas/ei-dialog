@@ -5,7 +5,7 @@
   "main": "dialog.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-test": "browserify -d test/test1.js > test/test1.debug.js; browserify -d test/test2.js > test/test2.debug.js; browserify -d test/big-dialog-test.js > test/big-dialog-test.debug.js"
+    "build-test": "bash build/build-tests.sh"
   },
   "keywords": [
     "dialog"
@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "jquery": "^1.12.0",
-    "tripartite": "^1.0.2"
+    "tripartite": "^1.1.0"
   },
   "browserify": {
     "transform": [
@@ -22,6 +22,7 @@
     ]
   },
   "devDependencies": {
+    "browserify": "^17.0.0",
     "stringify": "^5.1.0"
   },
   "repository": {

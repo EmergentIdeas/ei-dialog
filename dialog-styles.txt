@@ -1,0 +1,82 @@
+.dialog-frame {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 10000;
+	opacity: 0;
+	transition: opacity .3s;
+	overflow: hidden;
+}
+
+.dialog-frame.open {
+	opacity: 1;
+}
+
+.dialog-frame .mask {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #333333;
+	opacity: .7;
+	height: 100%;
+	z-index: 0;
+}
+
+.dialog-frame .dialog-holder {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin-left: 50%;
+}
+
+.dialog-frame .the-dialog {
+	position: relative;
+	display: inline-block;
+	top: 50%;
+	max-width: 90%;
+	max-height: 90%;
+	z-index: 1;
+	border-radius: 5px;
+	background-color: white;
+	overflow: hidden;
+	transform: translate(-50%, -50%) scale(.84);
+	transition: transform 0.262s cubic-bezier(.77,-1.72,.08,1);
+}
+
+.dialog-frame.open .the-dialog {
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.dialog-frame .the-dialog .close {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.dialog-frame .the-dialog .head {
+	border-bottom: solid #aaaaaa 1px;
+	line-height: 2em;
+	padding: 0 10px;
+}
+
+.dialog-frame .the-dialog .body {
+	box-sizing: border-box;
+	padding: 20px;
+	overflow: auto;
+	max-height: calc(90vh - 75px);
+}
+
+.dialog-frame .the-dialog .foot {
+	border-top: solid #aaaaaa 1px;
+	padding: 10px;
+}
+
+.dialog-frame .the-dialog .foot button {
+	margin-right: 15px;
+}

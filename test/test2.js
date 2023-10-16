@@ -1,4 +1,3 @@
-var $ = require('jquery')
 var Dialog = require('../dialog')
 
 var diag = new Dialog({
@@ -21,8 +20,6 @@ var diag = new Dialog({
 
 diag.open()
 
-$(function() {
-	$('.open-dialog').click(function() {
-		diag.open()
-	})
+document.querySelector('.open-dialog').addEventListener('click', (evt) => {
+	diag.open()
 })

@@ -1,4 +1,3 @@
-var $ = require('jquery')
 var Dialog = require('../dialog')
 var declaration = require('./declaration-of-independence.txt')
 
@@ -9,8 +8,6 @@ var diag = new Dialog({
 
 diag.open()
 
-$(function() {
-	$('.open-dialog').click(function() {
-		diag.open()
-	})
+document.querySelector('.open-dialog').addEventListener('click', (evt) => {
+	diag.open()
 })
