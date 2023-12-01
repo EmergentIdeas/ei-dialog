@@ -9,6 +9,8 @@ to be used for stacked dialogs.
 npm install ei-dialog
 ```
 
+When compiled its uncompressed, unminified size, including styles and comments, is about 7k.
+
 
 ## Usage 
 
@@ -80,12 +82,12 @@ The usage example from above.
  * dialog will not be closed. If it returns a Promise, the promise will be resolved and if the resolved
  * value is false, it will not be closed. Any other return condition will result in the dialog being
  * closed.
- * @param {Button[]} options.buttons The buttons that will show up in the footer of the dialog. If buttons are not
+ * @param {Button[]} [options.buttons] The buttons that will show up in the footer of the dialog. If buttons are not
  * specified, "OK" and "Cancel" buttons will be added.
- * @param {string} options.title The title of the dialog
- * @param {string} options.dialogFrameClass An additional string inserted into the class attribute for
+ * @param {string} [options.title] The title of the dialog
+ * @param {string} [options.dialogFrameClass] An additional string inserted into the class attribute for
  * specific styling of specific types of dialog boxes.
- * @param {function} options.afterOpen A function which is called after open with the body element and dialog object
+ * @param {function} [options.afterOpen] A function which is called after open with the body element and dialog object
  * as arguments.
  */
 

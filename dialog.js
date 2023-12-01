@@ -1,6 +1,13 @@
 let dialogStyles = require('./dialog-styles.txt')
 let sequence = 0
 
+// If we're loading via a module system or packed by webpack, we may
+// have a module here instead of the value. We need to check for default
+// and use that if it exists.
+if(typeof dialogStyles !== 'string' && dialogStyles.default) {
+	dialogStyles = dialogStyles.default	
+}
+
 
 /**
  * A button definition.
