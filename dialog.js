@@ -192,7 +192,9 @@ Dialog.prototype.open = function() {
 
 Dialog.prototype.close = function() {
 	let frame = document.querySelector(this.getFrameSelector())
-	frame.remove()
+	if(frame) {
+		frame.remove()
+	}
 	return this
 }
 
